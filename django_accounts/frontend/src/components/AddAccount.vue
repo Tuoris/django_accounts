@@ -17,18 +17,32 @@
             </button>
           </div>
           <div class="modal-body">
-            <div v-for="error in errors" v-bind:key="error[0]" class="alert alert-danger" role="alert">
-              {{ error[0] }}: {{ error[1][0] }}
-            </div>
+            <div
+              v-for="error in errors"
+              v-bind:key="error[0]"
+              class="alert alert-danger"
+              role="alert"
+            >{{ error[0] }}: {{ error[1][0] }}</div>
             <form>
               <div class="form-group">
-                <img v-bind:src="account.avatar" class="avatar-preview">
-                <br>
-                <button v-on:click="removeImage" class="btn btn-primary" v-if="account.avatar">Remove image</button>
+                <img v-bind:src="account.avatar" class="avatar-preview" />
+                <br />
+                <button
+                  v-on:click="removeImage"
+                  class="btn btn-primary"
+                  v-if="account.avatar"
+                >Remove image</button>
               </div>
               <div class="form-group">
-                <label for="avatar">Avatar</label><br>
-                <input type="file" id="avatar" v-on:change="loadAccountImage" class="btn btn-primary" accept="image/x-png,image/gif,image/jpeg"/>
+                <label for="avatar">Avatar</label>
+                <br />
+                <input
+                  type="file"
+                  id="avatar"
+                  v-on:change="loadAccountImage"
+                  class="btn btn-primary"
+                  accept="image/x-png, image/gif, image/jpeg"
+                />
               </div>
               <div class="form-group">
                 <label for="first_name">First name</label>
@@ -48,7 +62,12 @@
                   <button v-on:click="reset" type="button" class="btn btn-primary">Cancel</button>
                 </div>
                 <div class="btn-group mr-2">
-                  <button type="button" v-on:click="addAccount" class="btn btn-primary" :disabled="disabled">Add</button>
+                  <button
+                    type="button"
+                    v-on:click="addAccount"
+                    class="btn btn-primary"
+                    :disabled="disabled"
+                  >Add</button>
                 </div>
               </div>
             </form>
