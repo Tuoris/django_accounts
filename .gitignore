@@ -61,6 +61,8 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 */media/uploads
+*/static
+*/frontend/static
 
 # Flask stuff:
 instance/
@@ -124,3 +126,16 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# Node staff
+.DS_Store
+node_modules
+dist
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
