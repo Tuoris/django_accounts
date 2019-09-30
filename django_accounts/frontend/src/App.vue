@@ -8,7 +8,7 @@
       v-bind:errors="addAccountErrors"
       v-bind:disabled="isAddFormDisabled"
     />
-    <button v-on:click="showAddAccount" class="btn btn-primary mb-1">Add new Account</button>
+    <button v-on:click="showAddAccount" class="btn btn-primary my-1">Add new Account</button>
     <div class="row">
       <Account
         v-for="account in accounts"

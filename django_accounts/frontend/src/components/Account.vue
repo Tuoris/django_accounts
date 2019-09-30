@@ -1,14 +1,16 @@
 <template>
-  <div class="card col-sm-6 col-md-3 p-0">
-    <div class="avatar-image-container">
-      <img v-if="account.avatar" v-bind:src="account.avatar" class="avatar-image card-img-top" />
-      <img v-else src="/static/no-avatar.png" class="avatar-image card-img-top" />
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">{{ account.first_name }} {{ account.last_name }}</h5>
-      <p class="card-text">Created {{ account.creation_date }}</p>
-      <div class="btn-group mr-1 ml-1">
-        <button v-on:click="deleteAccount" class="btn btn-danger">Delete</button>
+  <div class="col-sm-6 col-md-4 col-lg-3 mt-1 p-1">
+    <div class="card">
+      <div class="avatar-image-container">
+        <img v-if="account.avatar" v-bind:src="account.avatar" class="avatar-image card-img-top" />
+        <img v-else src="/static/no-avatar.png" class="avatar-image card-img-top" />
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ account.first_name }} {{ account.last_name }}</h5>
+        <p class="card-text">Created {{ account.creation_date }}</p>
+        <div class="btn-group mx-1">
+          <button v-on:click="deleteAccount" class="btn btn-danger">Delete</button>
+        </div>
       </div>
     </div>
   </div>
@@ -22,7 +24,7 @@ export default {
   },
   methods: {
     deleteAccount: function(event) {
-      this.$emit('delete', this.account);
+      this.$emit("delete", this.account);
     }
   }
 };
