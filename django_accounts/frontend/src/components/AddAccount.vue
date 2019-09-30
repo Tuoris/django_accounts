@@ -60,6 +60,16 @@
 </template>
 
 <script>
+const default_data = function() {
+  return {
+    account: {
+      first_name: null,
+      last_name: null,
+      avatar: null
+    }
+  };
+};
+
 export default {
   name: "AddAccount",
   props: {
@@ -67,19 +77,15 @@ export default {
     disabled: Boolean
   },
   data: function() {
-    return {
-      account: {
-        first_name: null,
-        last_name: null,
-        avatar: null
-      }
-    };
+    return default_data();
   },
   methods: {
     close: function(event) {
       this.$emit("close");
     },
     reset(event) {
+      document.querySelector("#avatar").value = null;
+      this.account = default_data().account;
       this.$emit("reset");
       this.close(event);
     },

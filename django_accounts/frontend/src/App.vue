@@ -67,7 +67,7 @@ export default {
         return response.json();
       }).then(json_data => {
         if (response_succeed) {
-          vm.accounts.push(json_data);
+          vm.fetchAccounts();
         } else {
           vm.addAccountErrors = Object.entries(json_data);
         }
