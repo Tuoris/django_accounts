@@ -25,7 +25,7 @@ SECRET_KEY = '^o%s0b*1^r7rd*%xgk$+d((jq3%0(!xip8p3rpi*24@pk#f+06'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-vue-accounts.herokuapp.com']
+ALLOWED_HOSTS = ['django-vue-accounts.herokuapp.com', 'localhost']
 
 
 # Application definition

@@ -1,1 +1,1 @@
-web: cd django_accounts; cd frontend; npm run build; cd ..; python manage.py migrate; python manage.py collectstatic --no-input python manage.py runserver 0.0.0.0:$PORT
+web: cd django_accounts; cd frontend; npm run build; cd ..; python manage.py migrate; python manage.py collectstatic --no-input; python manage.py runserver 0.0.0.0:$PORT
