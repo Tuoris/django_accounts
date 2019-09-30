@@ -7,6 +7,7 @@
       v-on:add="addAccount"
       v-bind:errors="addAccountErrors"
       v-bind:disabled="isAddFormDisabled"
+      ref="account-form"
     />
     <button v-on:click="showAddAccount" class="btn btn-primary my-1">Add new Account</button>
     <div class="row">
@@ -61,6 +62,7 @@ export default {
           }
         } else {
           response_succeed = true;
+          vm.$refs['account-form'].reset();
           vm.resetAddAccount();
           vm.closeAddAccount();
         }
