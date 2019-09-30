@@ -23,7 +23,7 @@ class AccountSerializer(serializers.ModelSerializer):
 
 
 class JSONCreateAccountSerializer(serializers.ModelSerializer):
-    avatar = serializers.CharField()
+    avatar = serializers.CharField(required=False, allow_null=True)
 
     class Meta:
         model = Account
