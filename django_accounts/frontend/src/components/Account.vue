@@ -1,5 +1,5 @@
 <template>
-  <div class="card col-md-3 m-2 p-0">
+  <div class="card col-sm-6 col-md-3 p-0">
     <div class="avatar-image-container">
       <img v-if="account.avatar" v-bind:src="account.avatar" class="avatar-image card-img-top" />
       <img v-else src="/static/no-avatar.png" class="avatar-image card-img-top" />
@@ -9,9 +9,6 @@
       <p class="card-text">Created {{ account.creation_date }}</p>
       <div class="btn-group mr-1 ml-1">
         <button v-on:click="deleteAccount" class="btn btn-danger">Delete</button>
-      </div>
-      <div class="btn-group mr-1 ml-1">
-        <button v-on:click="editAccount" class="btn btn-primary">Edit</button>
       </div>
     </div>
   </div>
@@ -24,9 +21,6 @@ export default {
     account: Object
   },
   methods: {
-    editAccount: function(event) {
-      this.$emit('edit', this.account);
-    },
     deleteAccount: function(event) {
       this.$emit('delete', this.account);
     }

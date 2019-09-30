@@ -1,11 +1,19 @@
 <template>
   <div class="container mt-2" id="app">
+    <AddAccount
+      v-on:close="closeAddAccount"
+      v-on:reset="resetAddAccount"
+      v-show="isAddFormVisible"
+      v-on:add="addAccount"
+      v-bind:errors="addAccountErrors"
+      v-bind:disabled="isAddFormDisabled"
+    />
+    <button v-on:click="showAddAccount" class="btn btn-primary mb-1">Add new Account</button>
     <div class="row">
       <Account
         v-for="account in accounts"
         v-bind:account="account"
         v-bind:key="account.id"
-        v-on:edit="editAccount"
         v-on:delete="deleteAccount"
       />
     </div>
@@ -14,23 +22,56 @@
 
 <script>
 import Account from "./components/Account.vue";
+import AddAccount from "./components/AddAccount.vue";
 
 export default {
   name: "app",
   data: function() {
     return {
+      isAddFormVisible: false,
+      isAddFormDisabled: false,
+      addAccountErrors: [],
       accounts: []
     };
   },
 
   components: {
     Account,
-    AddAccount,
+    AddAccount
   },
 
   methods: {
-    editAccount: function(account) {
-      console.log(account);
+    addAccount: function(account) {
+      let vm = this;
+      vm.isAddFormDisabled = true;
+
+      let response_succeed = false;
+      fetch("api/accounts/", {
+        method: "POST",
+        body: JSON.stringify(account),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      }).then(response => {
+        vm.isAddFormDisabled = false;
+        if (!response.ok) {
+          if (response.headers.get('Content-Type') != 'application/json') {
+            return Promise.reject(null);
+          }
+        } else {
+          response_succeed = true;
+          vm.resetAddAccount();
+          vm.closeAddAccount();
+        }
+        return response.json();
+      }).then(json_data => {
+        if (response_succeed) {
+          vm.accounts.push(json_data);
+        } else {
+          vm.addAccountErrors = Object.entries(json_data);
+        }
+      });
     },
 
     deleteAccount: function(account) {
@@ -44,6 +85,18 @@ export default {
           }
         }
       );
+    },
+
+    showAddAccount: function(event) {
+      this.isAddFormVisible = true;
+    },
+
+    closeAddAccount: function(event) {
+      this.isAddFormVisible = false;
+    },
+
+    resetAddAccount: function(event) {
+      this.addAccountErrors = [];
     },
 
     fetchAccounts: function() {
